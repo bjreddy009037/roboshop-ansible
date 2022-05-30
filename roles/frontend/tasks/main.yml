@@ -1,12 +1,13 @@
 - name: Installing nginx
   yum:
     name: nginx
-    state: latest
+    state: installed
 
 - name: removing old content
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
+
 - name: Download & Extract Frontend Content
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
@@ -23,7 +24,6 @@
   ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
-
 
 - name: Start Nginx Service
   ansible.builtin.systemd:
