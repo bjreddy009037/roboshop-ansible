@@ -27,10 +27,10 @@
     remote_src: yes
 
 - name: load schema
-    community.mongodb.mongodb_shell:
-      file: "/tmp/mongodb-main/{{item}}.js"
-      idempotent: yes
-    loop:
-      - catalogue
-      - users
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/{{item}}.js"
+    idempotent: yes
+  loop:
+    - catalogue
+    - users
 
