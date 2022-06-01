@@ -37,7 +37,7 @@
 - name: setup systemd conf file
   ansible.builtin.template:
     src: systemd.service
-    dest: /etc/systemd/system /catalogue.service
+    dest: /etc/systemd/system/catalogue.service
 
 - name: Start catalogue Service
   ansible.builtin.systemd:
