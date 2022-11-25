@@ -1,1 +1,32 @@
+- name: Install the latest version of nginx
+  ansible.builtin.yum:
+    name: nginx
+    state: installed
 
+- name: removing old directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: downloading and unzip frontend file
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+    dest: /tmp/frontend.zip
+    remote_src: yes
+
+- name: copy frontend file
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static/
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: Template a file roboshop conf file
+  ansible.builtin.template:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: starting nginx
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx
+    enabled: yes
