@@ -17,7 +17,7 @@
    echo "Instance Already exists"
  else
   AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=Centos-7-DevOps-Practice" --output table  | grep ImageId | awk '{print $4}')
-  aws ec2 run-instances --image-id ${AMI_ID} --instance-type t3.micro --instance-market-options "MarketType=spot,SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=${NAME}}]" "ResourceType=instance,Tags=[{Key=Name,Value=${NAME}}]" --security-group-ids sg-0542d15b2d28653b8 &>/dev/null
+  aws ec2 run-instances --image-id ${AMI_ID} --instance-type t3.micro --instance-market-options "MarketType=spot,SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=${NAME}}]" "ResourceType=instance,Tags=[{Key=Name,Value=${NAME}}]" --security-group-ids sg-032093c293a641723 &>/dev/null
   echo EC2 Instance Created
   sleep 30
 fi
@@ -26,7 +26,7 @@ fi
  IPADDRESS=$(aws ec2 describe-instances  --instance-ids ${INSTANCE_ID}  --output table | grep PrivateIpAddress | head -n 1 | awk '{print $4}')
 
  sed -e "s/COMPONENT/${NAME}/" -e "s/IPADDRESS/${IPADDRESS}/" record.json >/tmp/record.json
- aws route53 change-resource-record-sets --hosted-zone-id Z09125503GRBX950Y4LV0 --change-batch file:///tmp/record.json &>/dev/null
+ aws route53 change-resource-record-sets --hosted-zone-id Z08351461XBOFH93FVJTZ --change-batch file:///tmp/record.json &>/dev/null
  echo DNS Record Created
 
 
