@@ -17,8 +17,8 @@
 
 - name: start mongodb service
   ansible.builtin.systemd:
-    state: restarted
     name: mongod
+    state: restarted
     enabled: yes
 
 - name: download and unzip schema
@@ -31,7 +31,6 @@
   community.mongodb.mongodb_shell:
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
-
   loop:
     - catalogue
     - users
