@@ -1,5 +1,5 @@
 - name: setting nodejs repo
-  community.mongodb.mongodb_shell: curl -s --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+  community.mongodb.mongodb_shell: curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
 
 - name: install nodejs
   ansible.builtin.yum:
