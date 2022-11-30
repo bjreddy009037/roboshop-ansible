@@ -1,5 +1,5 @@
 - name: setting nodejs repo
-  community.builtin.shell: curl -s  https://rpm.nodesource.com/setup_lts.x | bash
+  ansible.builtin.shell: curl -s  https://rpm.nodesource.com/setup_lts.x | bash
 
 - name: install nodejs
   ansible.builtin.yum:
