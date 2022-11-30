@@ -35,3 +35,14 @@
   community.general.npm:
     path: /home/roboshop/user
 
+- name: templateing systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/user.service
+
+- name: starting user
+  ansible.builtin.systemd:
+    state: restarted
+    name: user
+    enabled: yes
+    daemon-reload: yes
