@@ -35,6 +35,20 @@
   community.general.npm:
     path: /home/roboshop/catalogue
 
+- name: templateing systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
+
+- name: starting nginx
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx
+    enabled: yes
+    daemon-reload: yes
+
+
+
 
 
 
