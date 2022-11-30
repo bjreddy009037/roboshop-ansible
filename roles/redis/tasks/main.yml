@@ -6,7 +6,7 @@
 
 - name: install redis
   ansible.builtin.yum:
-    name: redis-6.2.7
+    name: redis-6.2
     state: installed
 
 - name: search and replace config ip
