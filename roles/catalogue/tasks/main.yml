@@ -1,11 +1,9 @@
 - name: setting nodejs repo
-  ansible.builtin.shell: curl -s https://rpm.nodesource.com/setup_lts.x | sudo bash -
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 - name: install nodejs
   ansible.builtin.yum:
-    name:
-      - nodejs
-      - gcc-c++
+    name: nodejs
     state: installed
 
 - name: adding roboshop user
