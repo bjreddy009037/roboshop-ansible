@@ -19,14 +19,14 @@
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html
     remote_src: yes
-#
-#- name: Template a file roboshop conf file
-#  ansible.builtin.template:
-#    src: roboshop.conf
-#    dest: /etc/nginx/default.d/roboshop.conf
-#
-#- name: starting nginx
-#  ansible.builtin.systemd:
-#    state: restarted
-#    name: nginx
-#    enabled: yes
+
+- name: Template a file roboshop conf file
+  ansible.builtin.template:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: starting nginx
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx
+    enabled: yes
