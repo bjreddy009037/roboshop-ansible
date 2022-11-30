@@ -43,7 +43,7 @@
 - name: starting nginx
   ansible.builtin.systemd:
     state: restarted
-    name: nginx
+    name: catalogue
     enabled: yes
     daemon-reload: yes
 
