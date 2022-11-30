@@ -1,0 +1,37 @@
+- name: Setup Yum repos
+  ansible.builtin.shell: curl -s https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: Install NodeJS
+  ansible.builtin.yum:
+    name:
+      - nodejs
+      - gcc-c++
+    state: installed
+
+- name: adding roboshop user
+  ansible.builtin.user:
+    name: roboshop
+
+- name: downloading and unzip user file
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/user/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: removing old contend
+  ansible.builtin.file:
+    path: /home/roboshop/user
+    state: absent
+
+- name: copy catalogue  file
+  ansible.builtin.copy:
+    src: /tmp/user-main/
+    dest: /home/roboshop/user/
+    remote_src: yes
+  become_user: roboshop
+
+
+- name: Install nodejs dependcies
+  community.general.npm:
+    path: /home/roboshop/user
+
