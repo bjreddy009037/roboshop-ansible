@@ -5,7 +5,7 @@
   ansible.builtin.yum:
     name:
       - nodejs
-      - gcc-c++
+      - libstdc++
     state: installed
 
 - name: adding roboshop user
