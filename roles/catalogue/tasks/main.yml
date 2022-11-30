@@ -6,7 +6,7 @@
     name:
       - nodejs
       - gcc-c++
-    state: installed
+    state: installedgit
 
 - name: adding roboshop user
   ansible.builtin.user:
