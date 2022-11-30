@@ -1,13 +1,17 @@
-- name: copying yum repo file
-  ansible.builtin.copy:
-    src: redis.repo
-    dest: /etc/yum.repos.d/redis.repo
-
-
-- name: install redis
-  ansible.builtin.yum:
-    name: redis-6.2
+- name: Configure Redis YUM repos
+  ansible.builtin.dnf:
+    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     state: installed
+    disable_gpg_check: yes
+
+- name: Configure Redis 6.2
+  ansible.builtin.shell: dnf module enable redis:remi-6.2 -y
+
+- name: Install Redis
+  ansible.builtin.dnf:
+    name: redis
+    state: installed
+    disable_gpg_check: yes
 
 - name: search and replace config ip
   ansible.builtin.replace:
