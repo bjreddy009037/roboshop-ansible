@@ -1,0 +1,62 @@
+- name: Configure MySQL Repo file
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: Disable MySQL 8 Version
+  ansible.builtin.shell: dnf module disable mysql -y
+
+- name: installling mysql
+  ansible.builtin.yum:
+    name: "{{item}}"
+    state: installed
+  loop:
+    - mysql-community-devel
+    - mysql-community-server
+    - gcc
+
+- name: start mysql service
+  ansible.builtin.systemd:
+    name: mysqld
+    state: restarted
+    enabled: yes
+
+- name: check my sql with new credentisils or not
+  mysql_info:
+    login_user: root
+    login_password: Roboshop@1
+    filter: version
+  ignore_errors: true
+  register: status
+
+- name: reset default password
+  when: status.failed | bool
+  block:
+    - name: copy mysql password reset sql file
+      ansible.builtin.copy:
+        src: password-sql.sql
+        dest: /tmp/password-reset.sql
+
+    - name: Grab default password
+      ansible.builtin.shell: grep 'A temporary password' /var/log/mysql.log | awk '{print $NF}'
+      register: DEFAULT_PASSWORD
+
+    - name: Reset default password
+      ansible.builtin.shell: mysql --connect-expired-password -u root -p{{DEFAULT_PASSWORD.stdout}} </tmp/password-reset.sql
+
+- name: download and extarct schema
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mysql/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: load mysql schema
+  mysql_db:
+    login_user: root
+    login_password: Roboshop@1
+    state: import
+    name: all
+    target: /tmp/mysql-main/shipping.sql
+
+
+
