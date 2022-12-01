@@ -11,7 +11,7 @@
 - name: compalies golang dependinces
   ansible.builtin.shell: "{{item}}"
   loop:
-    - go mod init dispatch
+    - go mod init
     - go get
     - go build
   args:
