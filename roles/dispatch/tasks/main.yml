@@ -18,5 +18,7 @@
     executable: go
     chdir: /home/roboshop/{{COMPONENT}}
     become_user: roboshop
+    become: yes
+
 
 
