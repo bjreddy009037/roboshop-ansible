@@ -9,7 +9,7 @@
     tasks_from: download-from-git
 
 - name: compalies golang dependinces
-  ansible.builtin.raw: go mod init  && go get && go build
+  ansible.builtin.shell: go mod init dispatch  && go get && go build
   args:
     executable: go
     chdir: /home/roboshop/{{COMPONENT}}
