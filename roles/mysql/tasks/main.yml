@@ -22,6 +22,11 @@
     state: restarted
     enabled: yes
 
+- name: Load the file
+  ansible.builtin.slurp:
+    src: /var/log/mysqld.log
+  register: out
+
 - name: check my sql with new credentisils or not
   mysql_info:
     login_user: root
