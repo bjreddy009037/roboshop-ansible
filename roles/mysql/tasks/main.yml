@@ -22,10 +22,7 @@
     state: restarted
     enabled: yes
 
-- name: Load the file
-  ansible.builtin.slurp:
-    src: /var/log/mysqld.log
-  register: out
+
 
 - name: check my sql with new credentisils or not
   mysql_info:
@@ -42,6 +39,7 @@
       ansible.builtin.copy:
         src: password-sql.sql
         dest: /tmp/password-reset.sql
+        remote_src: yes
 
     - name: Grab default password
       ansible.builtin.shell: grep 'A temporary password' /var/log/mysql.log | awk '{print $NF}'
