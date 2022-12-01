@@ -9,14 +9,10 @@
     tasks_from: download-from-git
 
 - name: compalies golang dependinces
-  ansible.builtin.command: "{{item}}"
-  loop:
-    - go mod init dispatch
-    - go get
-    - go build
+  ansible.builtin.command: go mod init dispatch && go get && go build
   args:
     executable: go
-    become_user: roboshop
+  become_user: roboshop
   become: yes
 
 
