@@ -78,6 +78,11 @@
     state: started
     enabled: yes
 
+- name: Load the file
+  ansible.builtin.slurp:
+    src: /var/log/mysqld.log
+  register: out
+
 - name: Check MySQL Working with NEW Credentisls or not
   mysql_info:
     login_user: root
