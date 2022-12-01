@@ -11,7 +11,7 @@
 - name: compalies golang dependinces
   ansible.builtin.shell: go mod init dispatch  && go get && go build
   args:
-    executable: go
+    executable: golang
     chdir: /home/roboshop/{{COMPONENT}}
 
 
