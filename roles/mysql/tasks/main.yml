@@ -14,7 +14,7 @@
     - mysql-community-devel
     - mysql-community-server
     - gcc
-    - PyMySQL
+    - python36-devel
 
 - name: start mysql service
   ansible.builtin.systemd:
