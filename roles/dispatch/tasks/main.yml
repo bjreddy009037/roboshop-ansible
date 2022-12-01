@@ -14,7 +14,7 @@
     - go get
     - go build
   args:
-    executable: golang
+    executable: go
     chdir: /home/roboshop/{{COMPONENT}}
 
 
