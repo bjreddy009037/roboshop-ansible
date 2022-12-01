@@ -1,0 +1,11 @@
+- name: templateing systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/{{COMPONENT}}.service
+
+- name: starting nginx
+  ansible.builtin.systemd:
+    state: restarted
+    name: "{{COMPONENT}}"
+    enabled: yes
+    daemon-reload: yes

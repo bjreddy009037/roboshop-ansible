@@ -4,8 +4,7 @@
 - name: Install NodeJS
   ansible.builtin.yum:
     name:
-      - nodejs
-      - gcc-c++
+      - maven
     state: installed
 
 - name: download conent from git
@@ -13,10 +12,10 @@
     name: common
     tasks_from: download-from-git
 
-
-- name: Install nodejs dependcies
-  community.general.npm:
-    path: /home/roboshop/{{COMPONENT}}
+- name: complies maveen dependices
+  ansible.builtin.shell: mvn clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+  args:
+    chdir: /home/roboshop/{{COMPONENT}}
 
 - name: import from common for systemd
   ansible.builtin.import_role:
