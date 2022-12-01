@@ -1,7 +1,5 @@
-- name: Setup Yum repos
-  ansible.builtin.shell: curl -s https://rpm.nodesource.com/setup_lts.x | bash
 
-- name: Install NodeJS
+- name: Install maven
   ansible.builtin.yum:
     name:
       - maven
