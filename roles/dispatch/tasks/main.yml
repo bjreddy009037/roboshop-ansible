@@ -11,11 +11,12 @@
 - name: compalies golang dependinces
   ansible.builtin.shell: "{{item}}"
   loop:
-    - go mod init
+    - go mod init dispatch
     - go get
     - go build
   args:
     executable: go
     chdir: /home/roboshop/{{COMPONENT}}
+    become_user: roboshop
 
 
