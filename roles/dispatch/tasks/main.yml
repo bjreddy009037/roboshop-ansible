@@ -17,7 +17,7 @@
   args:
     executable: go
     become_user: roboshop
-    become: yes
+  become: yes
 
 
 
