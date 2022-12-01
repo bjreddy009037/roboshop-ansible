@@ -12,3 +12,4 @@
   ansible.builtin.shell: go mod init && go get && go build
   args:
     chdir: /home/roboshop/{{COMPONENT}}
+  become_user: roboshop
