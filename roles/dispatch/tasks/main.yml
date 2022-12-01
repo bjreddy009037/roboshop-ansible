@@ -11,6 +11,8 @@
 - name: compalies golang dependinces
   ansible.builtin.command:
     cmd: go mod init  && go get && go build
+    args:
+      executable: go
 #  args:
 #    chdir: /home/roboshop/{{COMPONENT}}
 #  become_user: roboshop
