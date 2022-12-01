@@ -1,2 +1,2 @@
 - name: setting a host name for all the instances
-  ansible.builtin.shell: set-hostname
+  ansible.builtin.shell: set-hostname {{COMPONENT}}
