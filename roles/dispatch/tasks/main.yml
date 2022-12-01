@@ -12,7 +12,6 @@
   ansible.builtin.raw: go mod init  && go get && go build
   args:
     executable: go
-#  args:
-#    chdir: /home/roboshop/{{COMPONENT}}
-#  become_user: roboshop
-#  become: yes
+    chdir: /home/roboshop/{{COMPONENT}}
+  become_user: roboshop
+
