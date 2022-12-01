@@ -37,7 +37,7 @@
   block:
     - name: copy mysql password reset sql file
       ansible.builtin.copy:
-        src: password-sql.sql
+        src: password-reset.sql
         dest: /tmp/password-reset.sql
         remote_src: yes
 
