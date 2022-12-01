@@ -99,7 +99,7 @@
       register: DEFAULT_PASSWORD
 
     - name: Reset the password
-      ansible.builtin.shell: mysql --connect-expired-password -u root -p{{DEFAULT_PASSWORD.stdout}} </tmp/password-reset.sql
+      ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{ out['content'] | b64decode | regex_findall('temporary password.*') |join(' ')  | split(' ') | last }}" </tmp/password-reset.sql
 
 - name: Download & Extract MySQL Content
   ansible.builtin.unarchive:
