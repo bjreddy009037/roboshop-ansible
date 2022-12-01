@@ -1,9 +1,9 @@
-- name: Install the latest version of nginx
+- name: Install the latest version of golang
   ansible.builtin.yum:
     name: golang
     state: installed
 
-- name: download conent from git
+- name: download content from git
   ansible.builtin.import_role:
     name: common
     tasks_from: download-from-git
