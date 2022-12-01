@@ -39,7 +39,7 @@
       ansible.builtin.copy:
         src: password-reset.sql
         dest: /tmp/password-reset.sql
-        remote_src: yes
+
 
     - name: Grab default password
       ansible.builtin.shell: grep 'A temporary password' /var/log/mysql.log | awk '{print $NF}'
