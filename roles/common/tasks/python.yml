@@ -1,0 +1,23 @@
+- name: Installing python
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: installed
+
+- name: download conent from git
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: download-from-git
+
+- name: complies python dependices
+  pip:
+    requriments: /home/roboshop/{{COMPONENT}}/requriments.txt
+    executable: pip3
+
+
+- name: import from common for systemd
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
