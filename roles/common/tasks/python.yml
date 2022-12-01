@@ -16,6 +16,16 @@
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
 
+- name: Update config file
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: "{{item.string}}"
+    line: uid = {{item.value}}
+  loop:
+    - {string: "^uid=", value: "{{APPUSER.uid}}"}
+    - {string: "^gid=", value: "{{APPUSER.group}}"}
+
+
 
 - name: import from common for systemd
   ansible.builtin.import_role:
