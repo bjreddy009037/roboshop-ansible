@@ -13,7 +13,7 @@
 
 - name: complies python dependices
   pip:
-    requriments: /home/roboshop/{{COMPONENT}}/requriments.txt
+    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
 
 
