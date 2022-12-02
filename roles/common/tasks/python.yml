@@ -5,6 +5,12 @@
       - gcc
       - python3-devel
     state: installed
+- name: install python dependcies
+  pip:
+    name:
+      - boto3
+      - botocore
+    executable: pip3
 
 - name: download conent from git
   ansible.builtin.import_role:

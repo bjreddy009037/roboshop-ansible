@@ -15,7 +15,12 @@
     name: rabbitmq-server
     state: restarted
     enabled: yes
-
+- name: install python dependcies
+  pip:
+    name:
+      - boto3
+      - botocore
+    executable: pip3
 - name: adding user to rabbitmq
   community.rabbitmq.rabbitmq_user:
     user: "{{SECRET.RABBITMQ_USER}}"
