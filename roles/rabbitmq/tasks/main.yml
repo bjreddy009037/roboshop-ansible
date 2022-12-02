@@ -18,8 +18,8 @@
 
 - name: adding user to rabbitmq
   community.rabbitmq.rabbitmq_user:
-    user: roboshop
-    password: Roboshop@1
+    user: "{{SECRET.RABBITMQ_USER}}"
+    password: "{{SECRET.RABBITMQ_PASS}}"
     vhost: /
     configure_priv: .*
     read_priv: .*
