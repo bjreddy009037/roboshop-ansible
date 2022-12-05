@@ -5,9 +5,9 @@ pipeline {
     }
   }
   stages {
-    stage('test') {
+    stage('create ec2 ') {
       steps {
-        echo 'hello'
+        sh 'bash create-ec2-env.sh frontend dev'
       }
     }
 
