@@ -28,6 +28,12 @@ pipeline {
       }
     }
 
+    stage('sleep for 120 sec instance need to start for ssh connection') {
+      steps {
+        sleep 120
+          }
+        }
+
     stage('Run Ansible') {
       steps {
         sh 'ansible-playbook -i inv roboshop.yml -e HOST=${COMPONENT} -e ROLE_NAME=${COMPONENT} -e ENV=${ENV} -e ansible_user=${SSH_USR} -e ansible_password=${SSH_PSW}'
