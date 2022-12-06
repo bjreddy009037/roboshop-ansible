@@ -1,3 +1,6 @@
+@Library('roboshop-library') _
+
+
 pipeline {
   agent {
     node {
@@ -24,7 +27,9 @@ pipeline {
 
     stage('Create EC2 Server') {
       steps {
-        sh 'bash create-ec2-env.sh ${COMPONENT} ${ENV}'
+        script {
+          ec2InstanceCreate.create("${COMPONENT}", "${ENV}")
+        }
       }
     }
 
