@@ -6,8 +6,8 @@ pipeline {
   }
 
   parameters {
-    choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Pick Env')
-    choice(name: 'COMPONENT', choices: ['frontend', 'catalogue', 'mongodb'], description: 'Pick Component')
+    string(name: 'ENV', defaultValue: '', description: 'which ENV?')
+    string(name: 'COMPONENT', defaultValue: '', description: 'which COMPONENT?')
   }
 
   environment {
