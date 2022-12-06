@@ -33,7 +33,7 @@ pipeline {
       }
     }
 
-    stage('sleep for 120 sec instance need to start for ssh connection') {
+    stage('sleep for 60 sec instance need to start for ssh connection') {
       steps {
         sleep 60
           }
